@@ -1,7 +1,7 @@
 <개발환경>
 
 1. Raspberry Pi 4B
-<img width="50%" src=https://github.com/user-attachments/assets/3b06f4f8-11da-4bce-8c9a-345c44d9a468">
+<img width="50%" src="https://github.com/user-attachments/assets/3b06f4f8-11da-4bce-8c9a-345c44d9a468">
 
 2. Ubuntu 22.04 LTS
 
