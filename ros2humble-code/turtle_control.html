@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TURTLE CONTROL</title>
+  <style>
+    html, body{
+      height: 100%;
+    }
+    body{
+      margin: 0;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    h1, h2{
+      text-align: center;
+    }
+    .grid-container{
+      width: 50%;
+      max-width: 500px;
+      min-width: 275px;
+      height: 240px;
+      display: grid;
+      grid-template-areas:
+        "   .   up   .   "
+        " left  .  right "
+        "   .  down  .   ";
+    }
+    .flex-container{
+      display: flex;
+      justify-content: space-between;
+      height: 80px;
+    }
+    button{
+      width: 100%;
+      height: 100%;
+      font-size: 16px;
+      color: white;
+      background-color: rgb(7, 148, 148);
+      border: none;
+      border-radius: 6px;
+    }
+    button:hover{
+      background-color:rgba(7, 148, 148, 0.8);
+    }
+    button:active{
+      background-color:rgba(6, 108, 108, 0.8);
+    }
+    .up { grid-area: up; }
+    .left { grid-area: left; }
+    .right { grid-area: right; }
+    .down { grid-area: down; }
+
+    .margin-top{
+      margin-top: 10px;
+    }
+    .flex-item-button{
+      width: 40%;
+    }
+    .justify-center{
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Turtle Control</h1>
+    <h2>CONNECT : <span id="status">N/A</span></h2>
+    <div class="grid-container">
+      <button id="up" class="up">UP</button>
+      <button id="left" class="left">LEFT</button>
+      <button id="right" class="right">RIGHT</button>
+      <button id="down" class="down">DOWN</button>
+    </div>
+    <div class="flex-container margin-top">
+      <button id="pen" class="pen flex-item-button">PEN DOWN</button>
+      <button id="clear" class="clear flex-item-button">CLEAR</button>
+    </div>
+    <div class="flex-container margin-top justify-center">
+      <button id="reset" class="reset flex-item-button">RESET</button>
+    </div>
+  </div>
+
+
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/roslib@1/build/roslib.min.js"></script>
+  <script type="text/javascript" type="text/javascript">
+    const ros = new ROSLIB.Ros({ url: "ws://192.168.137.218:9090" });
+    ros.on("connection", () => {
+      document.getElementById("status").innerHTML = "successful";
+    });
+    ros.on("error", (error) => {
+      document.getElementById("status").innerHTML = `errored out (${error})`;
+    });
+    ros.on("close", () => {
+      document.getElementById("status").innerHTML = "closed";
+    });
+
+    const cmdVel = new ROSLIB.Topic({
+      ros,
+      name: "/turtle1/cmd_vel",
+      messageType: "geometry_msgs/msg/Twist",
+    });
+    
+    const clearServiceClient = new ROSLIB.Service({
+      ros : ros,
+      name : "/clear",
+      serviceType : "std_srvs/srv/Empty"
+    });
+
+    const setPenServiceClient = new ROSLIB.Service({
+      ros : ros,
+      name : "/turtle1/set_pen",
+      serviceType : "turtlesim/srv/SetPen"
+    });
+
+    const resetServiceClient = new ROSLIB.Service({
+      ros : ros,
+      name : "/reset",
+      serviceType : "std_srvs/srv/Empty"
+    });
+
+    let isPenDown = false;
+
+    function pubData(lx = 0, ly = 0, lz = 0, ax = 0, ay = 0, az = 0){
+        const twist = new ROSLIB.Message({
+          linear : {
+            x : lx,
+            y : ly,
+            z : lz
+          },
+          angular : {
+            x : ax,
+            y : ay,
+            z : az
+          }
+        });
+        cmdVel.publish(twist);
+      }
+    
+    const up = document.getElementById("up")
+    const left = document.getElementById("left")
+    const right = document.getElementById("right")
+    const down = document.getElementById("down")
+    const clear = document.getElementById("clear")
+    const pen = document.getElementById("pen")
+    const reset = document.getElementById("reset")
+    up.addEventListener("click", function(){
+      // console.log("위로 이동")
+      pubData(1, 0, 0, 0, 0, 0)
+    })
+    left.addEventListener("click", function(){
+      // console.log("왼쪽 회전")
+      pubData(0, 0, 0, 0, 0, 1.6)
+    })
+    right.addEventListener("click", function(){
+      // console.log("오른쪽 회전")
+      pubData(0, 0, 0, 0, 0, -1.5)
+    })
+    down.addEventListener("click", function(){
+      // console.log("아래로 이동")
+      pubData(-1, 0, 0, 0, 0, 0)
+    })
+    clear.addEventListener("click", function(){
+      const request = new ROSLIB.ServiceRequest()
+      clearServiceClient.callService(request, function(response) {
+        console.log("response :", response)
+      })
+    })
+    pen.addEventListener("click", function(){
+      const request = new ROSLIB.ServiceRequest({
+        r: 255, g: 255, b: 255, width: 2,
+        off : isPenDown ? 1 : 0
+      })
+      setPenServiceClient.callService(request, function(response) {
+        // console.log("response :", response)
+        isPenDown = !isPenDown
+        console.log("isPenDown", isPenDown)
+        pen.innerText = isPenDown ? "PEN UP" : "PEN DOWN"
+      })
+    })
+    reset.addEventListener("click", function(){
+      const request = new ROSLIB.ServiceRequest()
+      resetServiceClient.callService(request, function(response) {
+        console.log("response :", response)
+      })
+    })
+
+
+    const request = new ROSLIB.ServiceRequest({ off: 1 })
+    setPenServiceClient.callService(request, function(response) {
+      console.log("response :", response)
+    })
+  </script>
+</body>
+</html>

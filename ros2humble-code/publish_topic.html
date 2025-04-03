@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>PUBLISH DATA</title>
+  </head>
+  <body>
+
+    <h2>CONNECT : <span id="status"></span></h2>
+    <form id="form">
+      <div>
+        <p>Linear</p>
+        <label>X <input name="linear_x" type="number" step="0.1" value="0" /></label><br />
+        <label>Y <input name="linear_y" type="number" step="0.1" value="0" /></label><br />
+        <label>Z <input name="linear_z" type="number" step="0.1" value="0" /></label>
+      </div>
+      <div>
+        <p>Angular</p>
+        <label>X <input name="angular_x" type="number" step="0.1" value="0" /></label><br />
+        <label>Y <input name="angular_y" type="number" step="0.1" value="0" /></label><br />
+        <label>Z <input name="angular_z" type="number" step="0.1" value="0" /></label>
+      </div>
+      <button>PUBLISH</button>
+    </form>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/roslib@1/build/roslib.min.js"></script>
+    <script type="text/javascript" type="text/javascript">
+      const ros = new ROSLIB.Ros({ url: "ws://192.168.137.218:9090" });
+
+      ros.on("connection", () => {
+        document.getElementById("status").innerHTML = "successful";
+      });
+      ros.on("error", (error) => {
+        document.getElementById("status").innerHTML = `errored out (${error})`;
+      });
+      ros.on("close", () => {
+        document.getElementById("status").innerHTML = "closed";
+      });
+
+      const cmdVel = new ROSLIB.Topic({
+        ros,
+        name: "/turtle1/cmd_vel",
+        messageType: "geometry_msgs/msg/Twist",
+      });
+
+      const form = document.getElementById("form")
+      form.addEventListener("submit", function(e){
+        e.preventDefault()
+        const twist = new ROSLIB.Message({
+          linear : {
+            x : parseFloat(e.target.linear_x.value),
+            y : parseFloat(e.target.linear_y.value),
+            z : parseFloat(e.target.linear_z.value)
+          },
+          angular : {
+            x : parseFloat(e.target.angular_x.value),
+            y : parseFloat(e.target.angular_y.value),
+            z : parseFloat(e.target.angular_z.value)
+          }
+        });
+        cmdVel.publish(twist);
+      })
+    </script>
+  </body>
+</html>
