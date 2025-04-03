@@ -1,9 +1,13 @@
 <개발환경>
 
 1. Raspberry Pi 4B
+<img style="display: block;-webkit-user-select: none;margin: auto;background-color: hsl(0, 0%, 90%);transition: background-color 300ms;" src="https://github-production-user-asset-6210df.s3.amazonaws.com/186774523/429788572-3b06f4f8-11da-4bce-8c9a-345c44d9a468.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20250403%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20250403T052150Z&amp;X-Amz-Expires=300&amp;X-Amz-Signature=a8d05939497561b9ce36475e9735cec8470a3fade05850c8a429c9b85fdfc4a4&amp;X-Amz-SignedHeaders=host">
+
 2. Ubuntu 22.04 LTS
 
-* Raspberry Pi imager 를 통해 운영체제 업로드 
+* Raspberry Pi imager 를 통해 운영체제를 업로드할 수 있습니다.
+<img src="https://private-user-images.githubusercontent.com/186774523/429788681-e16d31c3-6284-4e79-bdb6-947e33726d83.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDM2NTgwMDQsIm5iZiI6MTc0MzY1NzcwNCwicGF0aCI6Ii8xODY3NzQ1MjMvNDI5Nzg4NjgxLWUxNmQzMWMzLTYyODQtNGU3OS1iZGI2LTk0N2UzMzcyNmQ4My5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUwNDAzJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MDQwM1QwNTIxNDRaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1mYmE1MmE5ODA5MTJlMzhlNDU5MGNmZDBmNDI3NTM0OTZjOGNkODU2ZTEwYjIwZGE3ZWMwZmQ2OWE3ZDY5YzZiJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.YfS_TWdIfUYxAP2nYFKBqd9AA_8ePqNVAfMKvJ2jAjc" alt="Image" style="max-width: 100%;">
+
 
 <설치과정>
 
@@ -19,4 +23,11 @@ sudo apt install ros-humble-rosbridge-server
 1. ros2 run turtlesim turtlesim_node
 2. ros2 launch rosbridge_server rosbridge_websocket_launch.xml
 
+<실행화면>
+<img src="https://private-user-images.githubusercontent.com/186774523/429781232-9f3d9ee4-9a2c-4385-81f8-133827b970fa.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDM2NTcwMjMsIm5iZiI6MTc0MzY1NjcyMywicGF0aCI6Ii8xODY3NzQ1MjMvNDI5NzgxMjMyLTlmM2Q5ZWU0LTlhMmMtNDM4NS04MWY4LTEzMzgyN2I5NzBmYS5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUwNDAzJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MDQwM1QwNTA1MjNaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1jNDc0Mzc1ZjkzMDRiMDhkMTU4MTEwZjkwZjg0ZWEwYzhiNDUwNmM4YjRlNDg0YjY0ZDQwODM1NmJkY2ZmYmJlJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.Ke7CN8qoL7GkAiNVYo8SN6Sd9gO8G5fOPP2l5zoltZQ" alt="Image" style="max-width: 100%;">
+
+
 * 위 명령어 실행 완료되면 무선 네트워크 공유하는 PC에서 코드 실행 (이때 기기 ip 확인하고 올바르게 수정 필요)
+
+<웹 컨트롤러 실행화면>
+<img width="944" alt="Image" src="https://private-user-images.githubusercontent.com/186774523/429781706-7a28c718-fd54-4e83-a1e7-9ff6f643c4f0.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDM2NTc2ODUsIm5iZiI6MTc0MzY1NzM4NSwicGF0aCI6Ii8xODY3NzQ1MjMvNDI5NzgxNzA2LTdhMjhjNzE4LWZkNTQtNGU4My1hMWU3LTlmZjZmNjQzYzRmMC5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUwNDAzJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MDQwM1QwNTE2MjVaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1hNjZlN2RlZTQ0YjQ2NzViYWExN2NlOThjMmU2ZGRjOTIwOWMxOWYxODY4NzY5MGRkZmEyZjMxNWYwNDI1NGZiJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.vpQwfJmEm-HxRWNBMjIy2L_PvlP7ANqWV3xZREL1ZPE" style="max-width: 100%;">
