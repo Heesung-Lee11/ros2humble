@@ -1,12 +1,12 @@
 <개발환경>
 
 1. Raspberry Pi 4B
-<img src=https://github.com/user-attachments/assets/3b06f4f8-11da-4bce-8c9a-345c44d9a468">
+<img width="50%" src=https://github.com/user-attachments/assets/3b06f4f8-11da-4bce-8c9a-345c44d9a468">
 
 2. Ubuntu 22.04 LTS
 
 * Raspberry Pi imager 를 통해 운영체제를 업로드할 수 있습니다.
-<img src="https://github.com/user-attachments/assets/e16d31c3-6284-4e79-bdb6-947e33726d83">
+<img width="70%" src="https://github.com/user-attachments/assets/e16d31c3-6284-4e79-bdb6-947e33726d83">
 
 <설치과정>
 
@@ -23,9 +23,9 @@ sudo apt install ros-humble-rosbridge-server
 2. ros2 launch rosbridge_server rosbridge_websocket_launch.xml
 
 <실행화면>
-<img src="https://github.com/user-attachments/assets/9f3d9ee4-9a2c-4385-81f8-133827b970fa">
+<img width="70%" src="https://github.com/user-attachments/assets/9f3d9ee4-9a2c-4385-81f8-133827b970fa">
 
 * 위 명령어 실행 완료되면 무선 네트워크 공유하는 PC에서 코드 실행 (이때 기기 ip 확인하고 올바르게 수정 필요)
 
 <웹 컨트롤러 실행화면>
-<img width="944" alt="Image" src="https://github.com/user-attachments/assets/7a28c718-fd54-4e83-a1e7-9ff6f643c4f0" />
+<img width="70%" alt="Image" src="https://github.com/user-attachments/assets/7a28c718-fd54-4e83-a1e7-9ff6f643c4f0" />
