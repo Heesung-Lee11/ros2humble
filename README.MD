@@ -22,10 +22,10 @@ sudo apt install ros-humble-rosbridge-server
 1. ros2 run turtlesim turtlesim_node
 2. ros2 launch rosbridge_server rosbridge_websocket_launch.xml
 
-<실행화면>
+<실행화면><br/>
 <img width="70%" src="https://github.com/user-attachments/assets/9f3d9ee4-9a2c-4385-81f8-133827b970fa">
 
 * 위 명령어 실행 완료되면 무선 네트워크 공유하는 PC에서 코드 실행 (이때 기기 ip 확인하고 올바르게 수정 필요)
 
-<웹 컨트롤러 실행화면>
+<웹 컨트롤러 실행화면><br/>
 <img width="70%" alt="Image" src="https://github.com/user-attachments/assets/7a28c718-fd54-4e83-a1e7-9ff6f643c4f0" />
